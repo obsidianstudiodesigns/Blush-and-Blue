@@ -195,7 +195,7 @@ def bottom(r, extra=""):
 </dialog>
 <dialog class="quick" id="quick" aria-labelledby="quick-name">
   <div class="quick__grid">
-    <div class="quick__img"><img id="quick-img" src="" alt="" width="380" height="380"></div>
+    <div class="quick__img"><img id="quick-img" alt="" width="380" height="380"></div>
     <div class="quick__info">
       <button class="icon-btn quick__close" type="button" data-close aria-label="Close">{ic('x')}</button>
       <div>
