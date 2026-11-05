@@ -94,9 +94,9 @@
     const p = bySlug[l.slug];
     const opts = [l.colour, p.sizes.length > 1 || p.sizes[0] !== "One size" ? "Size " + l.size : ""].filter(Boolean).join(", ");
     return `<li class="line">
-      <a class="line__img" href="${r}products/${p.slug}.html" tabindex="-1" aria-hidden="true"><img src="${r}assets/img/products/${p.images[0]}.webp" alt="" width="92" height="92" loading="lazy"></a>
+      <a class="line__img" href="${r}product/${p.slug}.html" tabindex="-1" aria-hidden="true"><img src="${r}assets/img/products/${p.images[0]}.webp" alt="" width="92" height="92" loading="lazy"></a>
       <div>
-        <a class="line__name" href="${r}products/${p.slug}.html">${esc(p.name)}</a>
+        <a class="line__name" href="${r}product/${p.slug}.html">${esc(p.name)}</a>
         <div class="line__meta">${esc(opts)}${compact ? "<br>Qty " + l.qty : ""}</div>
         ${compact ? "" : `<div class="line__actions">
           <div class="stepper" role="group" aria-label="Quantity of ${esc(p.name)}">
@@ -162,7 +162,7 @@
     $("#quick-name").textContent = p.name;
     $("#quick-price").textContent = money(p.price);
     $("#quick-colour").textContent = p.colours[0][0];
-    $("#quick-link").href = `${r}products/${p.slug}.html`;
+    $("#quick-link").href = `${r}product/${p.slug}.html`;
     $("#quick-sizes").innerHTML = p.sizes.map((s) => `<button type="button" class="chip" aria-pressed="false" data-size="${esc(s)}">${esc(s)}</button>`).join("");
     $("#quick-error").hidden = true;
     quick.showModal();

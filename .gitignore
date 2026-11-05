@@ -1,5 +1,5 @@
 .claude/
-/Products/WhatsApp*
+/Products/
 tools/source-images/
 __pycache__/
 *.pyc

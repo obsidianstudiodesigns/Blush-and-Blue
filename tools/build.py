@@ -230,7 +230,7 @@ def card(p, r, lazy=True):
     return f"""<article class="card" data-dept="{p['dept']}" data-cat="{p['cat']}" data-price="{p['price']}" data-tags="{' '.join(p['tags'])}" data-search="{search}">
   <div class="card__media"><img{photo} src="{r}assets/img/products/{img}.webp" alt="{esc(p['name'])} in {esc(p['colours'][0][0].lower())}" width="500" height="500" {load}>
     <button class="card__add" type="button" data-quick="{p['slug']}" aria-label="Add {esc(p['name'])} to bag">{ic('plus')}</button></div>
-  <div class="card__body"><a class="card__name" href="{r}products/{p['slug']}.html">{esc(p['name'])}</a><span class="card__meta">{label}</span><span class="card__price">{money(p['price'])}</span></div>
+  <div class="card__body"><a class="card__name" href="{r}product/{p['slug']}.html">{esc(p['name'])}</a><span class="card__meta">{label}</span><span class="card__price">{money(p['price'])}</span></div>
 </article>"""
 
 
@@ -315,7 +315,7 @@ def shop():
     depts = "".join(f'<button class="chip" type="button" data-filter-dept="{k}" aria-pressed="false">{t}</button>' for k, t in [("all", "All"), ("ladies", "Ladies"), ("mens", "Mens")])
     cats = "".join(f'<button class="chip" type="button" data-filter-cat="{k}" aria-pressed="false">{t}</button>' for k, t in [("all", "Everything"), ("shoes", "Shoes"), ("clothing", "Clothing"), ("accessories", "Accessories")])
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Shop Blush and Blue", "url": SITE + "shop.html", "isPartOf": {"@id": SITE + "#website"},
-          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}products/{p['slug']}.html", "name": p["name"]} for i, p in enumerate(PRODUCTS)]}}
+          "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "url": f"{SITE}product/{p['slug']}.html", "name": p["name"]} for i, p in enumerate(PRODUCTS)]}}
     body = f"""<main id="main">
 <div class="wrap page-head"><h1 id="shop-title">The full range</h1></div>
 <div class="filters"><div class="wrap filters__row">
@@ -340,7 +340,7 @@ def product(p):
     label = f'{DEPT[p["dept"]]} {CAT[p["cat"]].lower()}'
     colour = p["colours"][0]
     one = len(p["sizes"]) == 1
-    url = f"{SITE}products/{p['slug']}.html"
+    url = f"{SITE}product/{p['slug']}.html"
     title = f"{p['name']} | {label.capitalize()} | Blush and Blue"
     desc = f"{p['desc']} {money(p['price'])}. Order on WhatsApp."
     if len(desc) > 200:
@@ -406,7 +406,7 @@ def product(p):
   <div class="grid">{''.join(card(x, r) for x in related)}</div>
 </section>
 </main>"""
-    write(f"products/{p['slug']}.html", head(r, title, desc, f"products/{p['slug']}.html", og=f"assets/img/og/{p['slug']}.jpg", og_alt=f"{p['name']} from Blush and Blue", ld=ld, og_type="product") + top(r, "product") + body + bottom(r, extra))
+    write(f"product/{p['slug']}.html", head(r, title, desc, f"product/{p['slug']}.html", og=f"assets/img/og/{p['slug']}.jpg", og_alt=f"{p['name']} from Blush and Blue", ld=ld, og_type="product") + top(r, "product") + body + bottom(r, extra))
 
 
 def checkout():
@@ -585,7 +585,7 @@ def og_images():
 def meta_files():
     data = [{k: p[k] for k in ("slug", "name", "dept", "cat", "price", "colours", "sizes", "images")} for p in PRODUCTS]
     write("assets/js/products.js", "window.BB_PRODUCTS=" + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n")
-    urls = ["", "shop.html", "contact.html", "size-guide.html", "delivery-returns.html", "privacy.html", "terms.html"] + [f"products/{p['slug']}.html" for p in PRODUCTS]
+    urls = ["", "shop.html", "contact.html", "size-guide.html", "delivery-returns.html", "privacy.html", "terms.html"] + [f"product/{p['slug']}.html" for p in PRODUCTS]
     sm = "".join(f"<url><loc>{SITE}{u}</loc><lastmod>{TODAY}</lastmod></url>\n" for u in urls)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sm}</urlset>\n')
     write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /tools/\nDisallow: /checkout.html\n\nSitemap: {SITE}sitemap.xml\n")
