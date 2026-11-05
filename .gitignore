@@ -1,0 +1,5 @@
+.claude/
+Products/
+tools/source-images/
+__pycache__/
+*.pyc

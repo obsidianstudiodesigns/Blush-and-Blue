@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /tools/
+Disallow: /checkout.html
+
+Sitemap: https://obsidianstudiodesigns.github.io/Blush-and-Blue/sitemap.xml
