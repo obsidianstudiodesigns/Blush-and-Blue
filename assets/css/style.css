@@ -619,3 +619,6 @@ details.acc li + li { margin-top: 4px; }
   .bento__cap { display: block; }
   .bento__cap span { display: block; margin-top: 2px; }
 }
+
+/* Keep the page still behind the bag, menu and quick add */
+html:has(dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }
