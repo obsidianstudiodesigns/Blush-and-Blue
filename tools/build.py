@@ -93,8 +93,8 @@ def head(r, title, desc, path, og="assets/img/og/home.jpg", og_alt="Blush and Bl
 
 
 def wordmark(r, cls=""):
-    return (f'<img class="on-light" src="{r}assets/img/brand/wordmark-on-light.png" alt="{NAME}" width="1000" height="62">'
-            f'<img class="on-dark" src="{r}assets/img/brand/wordmark-on-dark.png" alt="" width="1000" height="62">')
+    return (f'<img class="on-light" src="{r}assets/img/brand/wordmark-on-light.png" alt="{NAME}" width="1000" height="72">'
+            f'<img class="on-dark" src="{r}assets/img/brand/wordmark-on-dark.png" alt="{NAME}" width="1000" height="72">')
 
 
 NAV = [("Ladies", "shop.html?dept=ladies"), ("Mens", "shop.html?dept=mens"), ("Shoes", "shop.html?cat=shoes"), ("Clothing", "shop.html?cat=clothing"), ("Accessories", "shop.html?cat=accessories")]
